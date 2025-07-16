@@ -1,0 +1,119 @@
+version: '3.8'
+
+networks:
+  marketplace-net:
+    driver: bridge
+
+services:
+  # 5 Sellers
+  seller1:
+    build:
+      context: ./seller
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: seller1
+    environment:
+      - SELLER_ID=seller1
+      - SELLER_PORT=6001
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  seller2:
+    build:
+      context: ./seller
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: seller2
+    environment:
+      - SELLER_ID=seller2
+      - SELLER_PORT=6002
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  seller3:
+    build:
+      context: ./seller
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: seller3
+    environment:
+      - SELLER_ID=seller3
+      - SELLER_PORT=6003
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  seller4:
+    build:
+      context: ./seller
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: seller4
+    environment:
+      - SELLER_ID=seller4
+      - SELLER_PORT=6004
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  seller5:
+    build:
+      context: ./seller
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: seller5
+    environment:
+      - SELLER_ID=seller5
+      - SELLER_PORT=6005
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  # 2 Marketplaces
+  marketplace1:
+    build:
+      context: ./marketplace
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: marketplace1
+    environment:
+      - MARKETPLACE_ID=MP1
+    depends_on:
+      - seller1
+      - seller2
+      - seller3
+      - seller4
+      - seller5
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+  marketplace2:
+    build:
+      context: ./marketplace
+      args:
+        - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    container_name: marketplace2
+    environment:
+      - MARKETPLACE_ID=MP2
+    depends_on:
+      - seller1
+      - seller2
+      - seller3
+      - seller4
+      - seller5
+    networks:
+      - marketplace-net
+    volumes:
+      - maven-repo:/root/.m2
+
+volumes:
+  maven-repo:

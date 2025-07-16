@@ -1,0 +1,39 @@
+[
+  {
+    "orderId": "ORDER-001",
+    "items": [
+      {"productId": "P1", "sellerId": "seller1", "quantity": 5},
+      {"productId": "P2", "sellerId": "seller2", "quantity": 3}
+    ]
+  },
+  {
+    "orderId": "ORDER-002",
+    "items": [
+      {"productId": "P1", "sellerId": "seller1", "quantity": 10},
+      {"productId": "P3", "sellerId": "seller3", "quantity": 2},
+      {"productId": "P2", "sellerId": "seller4", "quantity": 7}
+    ]
+  },
+  {
+    "orderId": "ORDER-003",
+    "items": [
+      {"productId": "P1", "sellerId": "seller1", "quantity": 100},
+      {"productId": "P2", "sellerId": "seller2", "quantity": 5}
+    ]
+  },
+  {
+    "orderId": "ORDER-004",
+    "items": [
+      {"productId": "P3", "sellerId": "seller5", "quantity": 15},
+      {"productId": "P1", "sellerId": "seller3", "quantity": 8},
+      {"productId": "P2", "sellerId": "seller4", "quantity": 12}
+    ]
+  },
+  {
+    "orderId": "ORDER-005",
+    "items": [
+      {"productId": "P2", "sellerId": "seller2", "quantity": 20},
+      {"productId": "P3", "sellerId": "seller5", "quantity": 10}
+    ]
+  }
+]
