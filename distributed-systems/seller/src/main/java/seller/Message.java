@@ -1,9 +1,11 @@
 package seller;
 
 public class Message {
-    public enum Type { RESERVE, CONFIRM, CANCEL }
+    public enum Type { RESERVE, CONFIRM, CANCEL, HEARTBEAT }
     
     private Type type;
+    private String messageId;
+    private String correlationId;
     private String orderId;
     private String productId;
     private int quantity;
@@ -11,13 +13,22 @@ public class Message {
     private String reservationId;
     private boolean success;
     private String reason;
+    private long timestamp;
     
     // Konstruktoren
-    public Message() {}
+    public Message() {
+        this.timestamp = System.currentTimeMillis();
+    }
     
-    // Getter und Setter (identisch mit marketplace.Message)
+    // Getter und Setter
     public Type getType() { return type; }
     public void setType(Type type) { this.type = type; }
+    
+    public String getMessageId() { return messageId; }
+    public void setMessageId(String messageId) { this.messageId = messageId; }
+    
+    public String getCorrelationId() { return correlationId; }
+    public void setCorrelationId(String correlationId) { this.correlationId = correlationId; }
     
     public String getOrderId() { return orderId; }
     public void setOrderId(String orderId) { this.orderId = orderId; }
@@ -39,4 +50,7 @@ public class Message {
     
     public String getReason() { return reason; }
     public void setReason(String reason) { this.reason = reason; }
+    
+    public long getTimestamp() { return timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 }

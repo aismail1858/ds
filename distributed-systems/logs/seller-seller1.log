@@ -1,0 +1,11 @@
+Starting Seller...
+Enhanced inventory initialized for seller1 with 3 products and 60000ms reservation timeout
+Advanced failure simulator initialized with 4 patterns
+Seller seller1 connecting to marketplace at tcp://localhost:5555...
+Initial inventory: P1:10 P2:10 P3:10
+Seller seller1 connected and ready for requests
+Cleaned up 0 expired idempotency entries
+Cleaned up 0 expired idempotency entries
+Cleaned up 0 expired idempotency entries
+Cleaned up 0 expired idempotency entries
+Cleaned up 0 expired idempotency entries

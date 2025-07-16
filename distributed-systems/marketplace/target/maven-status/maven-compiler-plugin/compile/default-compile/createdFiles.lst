@@ -1,0 +1,16 @@
+marketplace/MarketplaceApp.class
+marketplace/SagaOrchestrator$SagaInstance.class
+marketplace/Order.class
+marketplace/SagaStateManager$SagaSnapshot.class
+marketplace/SagaStateManager.class
+marketplace/Order$OrderItem.class
+marketplace/SagaStateManager$CompensationActionSnapshot.class
+marketplace/SagaOrchestrator$CompensationAction.class
+marketplace/SagaOrchestrator.class
+marketplace/SagaOrchestrator$ReservationResult.class
+marketplace/SagaOrchestrator$CancelReservationAction.class
+marketplace/OrderProcessor$1.class
+marketplace/AsyncMessageBroker.class
+marketplace/Message$Type.class
+marketplace/Message.class
+marketplace/OrderProcessor.class

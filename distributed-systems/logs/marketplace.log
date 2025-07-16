@@ -1,0 +1,727 @@
+Starting Marketplace Application...
+AsyncMessageBroker initialized with router port: 5555
+SagaStateManager initialized with 0 recovered sagas
+SagaOrchestrator initialized for marketplace1
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.gson.internal.reflect.ReflectionHelper (file:/mnt/c/Users/AhmedAbdelhamidIsmai/Downloads/distributed-systems/marketplace/target/marketplace.jar) to field java.util.concurrent.atomic.AtomicReference.value
+WARNING: Please consider reporting this to the maintainers of com.google.gson.internal.reflect.ReflectionHelper
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Order processor started for marketplace1
+MessageBroker ROUTER socket bound to tcp://*:5555
+
+=== Submitting Order ORDER-001 for processing ===
+Error processing response: null
+Error processing response: null
+Error processing response: null
+
+=== Submitting Order ORDER-002 for processing ===
+Error processing response: null
+Error processing response: null
+
+=== Submitting Order ORDER-003 for processing ===
+
+=== Submitting Order ORDER-004 for processing ===
+
+=== Submitting Order ORDER-005 for processing ===
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Heartbeat monitoring active. Pending requests: 0
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+Error processing response: null
+Error processing response: null
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Error processing response: null
+All orders submitted for processing.
+All orders submitted for processing.
+Shutting down marketplace...
+Shutting down order processor...
+SagaStateManager shut down
+SagaOrchestrator shut down
+AsyncMessageBroker shutdown complete

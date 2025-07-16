@@ -1,0 +1,9 @@
+common/IdempotencyManager$ProcessedMessage.class
+common/SagaState$1.class
+common/CircuitBreaker$State.class
+common/OrderStatus.class
+common/CircuitBreaker.class
+common/RetryManager.class
+common/SagaState.class
+common/IdempotencyManager.class
+common/Message.class

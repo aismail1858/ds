@@ -103,6 +103,7 @@ public class Inventory {
             this.confirmed = false;
         }
         
+        public String getId() { return id; }
         public String getProductId() { return productId; }
         public int getQuantity() { return quantity; }
         public boolean isConfirmed() { return confirmed; }

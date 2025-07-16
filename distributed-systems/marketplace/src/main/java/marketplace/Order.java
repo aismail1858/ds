@@ -1,41 +1,53 @@
 package marketplace;
 
+import common.OrderStatus;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Order {
-    private String orderId;
-    private List<OrderItem> items;
+    private final String orderId;
+    private final String customerId;
+    private final String marketplaceId;
+    private final List<OrderItem> items;
+    private final AtomicReference<OrderStatus> status;
+    private final long createdAt;
     
-    // Getter und Setter
+    public Order(String orderId, String customerId, String marketplaceId) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.marketplaceId = marketplaceId;
+        this.items = new ArrayList<>();
+        this.status = new AtomicReference<>(OrderStatus.CREATED);
+        this.createdAt = System.currentTimeMillis();
+    }
+    
+    public void addItem(String productId, int quantity, String sellerId) {
+        items.add(new OrderItem(productId, quantity, sellerId));
+    }
+    
     public String getOrderId() { return orderId; }
-    public void setOrderId(String orderId) { this.orderId = orderId; }
-    
-    public List<OrderItem> getItems() { return items; }
-    public void setItems(List<OrderItem> items) { this.items = items; }
+    public String getCustomerId() { return customerId; }
+    public String getMarketplaceId() { return marketplaceId; }
+    public List<OrderItem> getItems() { return new ArrayList<>(items); }
+    public OrderStatus getStatus() { return status.get(); }
+    public void setStatus(OrderStatus newStatus) { status.set(newStatus); }
+    public long getCreatedAt() { return createdAt; }
     
     // Innere Klasse für Order Items
     public static class OrderItem {
-        private String productId;
-        private String sellerId;
-        private int quantity;
+        private final String productId;
+        private final int quantity;
+        private final String sellerId;
         
-        // Konstruktoren
-        public OrderItem() {}
-        
-        public OrderItem(String productId, String sellerId, int quantity) {
+        public OrderItem(String productId, int quantity, String sellerId) {
             this.productId = productId;
-            this.sellerId = sellerId;
             this.quantity = quantity;
+            this.sellerId = sellerId;
         }
         
-        // Getter und Setter
         public String getProductId() { return productId; }
-        public void setProductId(String productId) { this.productId = productId; }
-        
-        public String getSellerId() { return sellerId; }
-        public void setSellerId(String sellerId) { this.sellerId = sellerId; }
-        
         public int getQuantity() { return quantity; }
-        public void setQuantity(int quantity) { this.quantity = quantity; }
+        public String getSellerId() { return sellerId; }
     }
 }

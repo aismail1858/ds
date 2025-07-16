@@ -5,6 +5,7 @@ import org.zeromq.ZContext;
 import org.zeromq.ZMQ;
 
 import com.google.gson.Gson;
+import common.IdempotencyManager;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -15,17 +16,20 @@ public class SellerApp {
     private static final String CONFIG_FILE = "config.properties";
     
     private String sellerId;
-    private int port;
-    private Inventory inventory;
-    private FailureSimulator failureSimulator;
+    private String marketplaceEndpoint;
+    private EnhancedInventory inventory;
+    private AdvancedFailureSimulator failureSimulator;
+    private IdempotencyManager idempotencyManager;
     private final Gson gson = new Gson();
+    private volatile boolean running = false;
     
     public SellerApp() {
-        this.sellerId = System.getenv().getOrDefault("SELLER_ID", "defaultSeller");
-        this.port = Integer.parseInt(System.getenv().getOrDefault("SELLER_PORT", "6000"));
+        this.sellerId = System.getenv().getOrDefault("SELLER_ID", "seller1");
+        this.marketplaceEndpoint = System.getenv().getOrDefault("MARKETPLACE_ENDPOINT", "tcp://localhost:5555");
         Properties config = loadConfig();
-        this.inventory = new Inventory(sellerId, config);
-        this.failureSimulator = new FailureSimulator(config);
+        this.inventory = new EnhancedInventory(sellerId, config);
+        this.failureSimulator = new AdvancedFailureSimulator(config);
+        this.idempotencyManager = new IdempotencyManager();
     }
     
     public static void main(String[] args) {
@@ -34,77 +38,196 @@ public class SellerApp {
     }
     
     public void run() {
-        System.out.println("Seller " + sellerId + " starting on port " + port + "...");
+        System.out.println("Seller " + sellerId + " connecting to marketplace at " + marketplaceEndpoint + "...");
         System.out.println("Initial inventory: " + inventory.getStatus());
         
+        running = true;
+        
         try (ZContext context = new ZContext()) {
-            ZMQ.Socket socket = context.createSocket(SocketType.REP);
-            socket.bind("tcp://*:" + port);
+            // Use DEALER socket instead of REP for proper identity routing
+            ZMQ.Socket dealerSocket = context.createSocket(SocketType.DEALER);
+            dealerSocket.setIdentity(sellerId.getBytes(ZMQ.CHARSET));
+            dealerSocket.connect(marketplaceEndpoint);
             
-            while (!Thread.currentThread().isInterrupted()) {
-                // Warte auf Request
-                byte[] request = socket.recv(0);
-                if (request != null) {
-                    String jsonRequest = new String(request, ZMQ.CHARSET);
-                    System.out.println("\nReceived request: " + jsonRequest);
-                    
-                    String jsonResponse = processRequest(jsonRequest);
-                    socket.send(jsonResponse.getBytes(ZMQ.CHARSET), 0);
+            // Set up poller for non-blocking receive
+            ZMQ.Poller poller = context.createPoller(1);
+            poller.register(dealerSocket, ZMQ.Poller.POLLIN);
+            
+            System.out.println("Seller " + sellerId + " connected and ready for requests");
+            
+            while (running && !Thread.currentThread().isInterrupted()) {
+                // Poll for messages with timeout
+                if (poller.poll(1000) > 0) {
+                    if (poller.pollin(0)) {
+                        processIncomingMessage(dealerSocket);
+                    }
                 }
+                
+                // Send heartbeat periodically
+                sendHeartbeat(dealerSocket);
             }
+            
+            poller.close();
         } catch (Exception e) {
             System.err.println("Seller " + sellerId + " crashed: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            shutdown();
+        }
+    }
+    
+    private void processIncomingMessage(ZMQ.Socket dealerSocket) {
+        try {
+            // Receive multipart message [empty, message]
+            byte[] empty = dealerSocket.recv();
+            byte[] messageBytes = dealerSocket.recv();
+            
+            if (messageBytes != null) {
+                String jsonRequest = new String(messageBytes, ZMQ.CHARSET);
+                System.out.println("\nReceived request: " + jsonRequest);
+                
+                String jsonResponse = processRequest(jsonRequest);
+                
+                // Send response back [empty, response]
+                dealerSocket.send("", ZMQ.SNDMORE);
+                dealerSocket.send(jsonResponse.getBytes(ZMQ.CHARSET), 0);
+            }
+        } catch (Exception e) {
+            System.err.println("Error processing message: " + e.getMessage());
+        }
+    }
+    
+    private long lastHeartbeat = 0;
+    private void sendHeartbeat(ZMQ.Socket dealerSocket) {
+        long now = System.currentTimeMillis();
+        if (now - lastHeartbeat > 30000) { // Send heartbeat every 30 seconds
+            try {
+                Message heartbeat = new Message();
+                heartbeat.setType(Message.Type.HEARTBEAT);
+                heartbeat.setSellerId(sellerId);
+                
+                String heartbeatJson = gson.toJson(heartbeat);
+                dealerSocket.send("", ZMQ.SNDMORE);
+                dealerSocket.send(heartbeatJson.getBytes(ZMQ.CHARSET), 0);
+                
+                lastHeartbeat = now;
+            } catch (Exception e) {
+                System.err.println("Error sending heartbeat: " + e.getMessage());
+            }
         }
     }
     
     private String processRequest(String jsonRequest) {
-        // Simulate no response (crash)
-        if (failureSimulator.shouldSimulateNoResponse()) {
-            System.out.println("Simulating no response (crash)...");
-            // Wir müssen trotzdem antworten wegen REQ/REP Pattern
-            // In echter Implementierung würde hier der Socket hängen
-            Message response = new Message();
-            response.setSuccess(false);
-            response.setReason("Simulated crash");
-            return gson.toJson(response);
-        }
-        
-        Message request = gson.fromJson(jsonRequest, Message.class);
-        
-        // Simulate processing delay
         try {
-            Thread.sleep(Integer.parseInt(loadConfig().getProperty("seller.processing.delay.ms", "200")));
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Message request = gson.fromJson(jsonRequest, Message.class);
+            
+            // Handle heartbeat messages
+            if (request.getType() == Message.Type.HEARTBEAT) {
+                Message response = new Message();
+                response.setType(Message.Type.HEARTBEAT);
+                response.setSellerId(sellerId);
+                response.setSuccess(true);
+                response.setCorrelationId(request.getCorrelationId());
+                response.setMessageId(request.getMessageId());
+                return gson.toJson(response);
+            }
+            
+            // Check for idempotency - if we already processed this message, return cached result
+            if (request.getMessageId() != null && idempotencyManager.isAlreadyProcessed(request.getMessageId())) {
+                System.out.println("Request " + request.getMessageId() + " already processed, returning cached result");
+                return idempotencyManager.getProcessedResult(request.getMessageId());
+            }
+            
+            // Check for various failure scenarios
+            AdvancedFailureSimulator.FailureDecision noResponseDecision = 
+                failureSimulator.shouldSimulateFailure("no_response");
+            if (noResponseDecision.shouldFail()) {
+                System.out.println("Simulating no response: " + noResponseDecision.getReason());
+                Message response = new Message();
+                response.setSuccess(false);
+                response.setReason(noResponseDecision.getReason());
+                response.setCorrelationId(request.getCorrelationId());
+                response.setMessageId(request.getMessageId());
+                return gson.toJson(response);
+            }
+            
+            // Check for slow response simulation
+            AdvancedFailureSimulator.FailureDecision slowResponseDecision = 
+                failureSimulator.shouldSimulateFailure("slow_response");
+            if (slowResponseDecision.shouldFail()) {
+                System.out.println("Simulating slow response: " + slowResponseDecision.getReason());
+                try {
+                    Thread.sleep(slowResponseDecision.getDelayMs());
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            } else {
+                // Normal processing delay
+                try {
+                    Thread.sleep(Integer.parseInt(loadConfig().getProperty("seller.processing.delay.ms", "200")));
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            
+            // Check for processing failure
+            AdvancedFailureSimulator.FailureDecision processingFailureDecision = 
+                failureSimulator.shouldSimulateFailure("processing_failure");
+            if (processingFailureDecision.shouldFail()) {
+                System.out.println("Simulating processing failure: " + processingFailureDecision.getReason());
+                Message response = new Message();
+                response.setSuccess(false);
+                response.setReason(processingFailureDecision.getReason());
+                response.setCorrelationId(request.getCorrelationId());
+                response.setMessageId(request.getMessageId());
+                return gson.toJson(response);
+            }
+            
+            // Process based on message type
+            Message response = null;
+            
+            switch (request.getType()) {
+                case RESERVE:
+                    response = handleReserve(request);
+                    break;
+                case CONFIRM:
+                    response = handleConfirm(request);
+                    break;
+                case CANCEL:
+                    response = handleCancel(request);
+                    break;
+                default:
+                    response = createErrorResponse("Unknown message type");
+                    response.setCorrelationId(request.getCorrelationId());
+                    response.setMessageId(request.getMessageId());
+            }
+            
+            // Ensure response has correlation info
+            if (response != null) {
+                response.setCorrelationId(request.getCorrelationId());
+                response.setMessageId(request.getMessageId());
+            }
+            
+            String responseJson = gson.toJson(response);
+            
+            // Cache the result for idempotency (only if message has an ID)
+            if (request.getMessageId() != null) {
+                idempotencyManager.markAsProcessed(request.getMessageId(), responseJson);
+            }
+            
+            // Report success to failure simulator for pattern learning
+            if (response != null && response.isSuccess()) {
+                failureSimulator.reportSuccess();
+            }
+            
+            return responseJson;
+            
+        } catch (Exception e) {
+            System.err.println("Error processing request: " + e.getMessage());
+            e.printStackTrace();
+            Message errorResponse = createErrorResponse("Internal processing error: " + e.getMessage());
+            return gson.toJson(errorResponse);
         }
-        
-        // Simulate processing failure
-        if (failureSimulator.shouldSimulateProcessingFailure()) {
-            System.out.println("Simulating processing failure...");
-            Message response = new Message();
-            response.setSuccess(false);
-            response.setReason("Simulated processing failure");
-            return gson.toJson(response);
-        }
-        
-        // Verarbeite basierend auf Message Type
-        Message response = null;
-        
-        switch (request.getType()) {
-            case RESERVE:
-                response = handleReserve(request);
-                break;
-            case CONFIRM:
-                response = handleConfirm(request);
-                break;
-            case CANCEL:
-                response = handleCancel(request);
-                break;
-            default:
-                response = createErrorResponse("Unknown message type");
-        }
-        
-        return gson.toJson(response);
     }
     
     private Message handleReserve(Message request) {
@@ -115,11 +238,13 @@ public class SellerApp {
         response.setQuantity(request.getQuantity());
         response.setSellerId(sellerId);
         
-        // Simulate out of stock
-        if (failureSimulator.shouldSimulateOutOfStock()) {
-            System.out.println("Simulating out of stock...");
+        // Check for out of stock simulation
+        AdvancedFailureSimulator.FailureDecision outOfStockDecision = 
+            failureSimulator.shouldSimulateFailure("out_of_stock");
+        if (outOfStockDecision.shouldFail()) {
+            System.out.println("Simulating out of stock: " + outOfStockDecision.getReason());
             response.setSuccess(false);
-            response.setReason("Simulated out of stock");
+            response.setReason(outOfStockDecision.getReason());
             return response;
         }
         
@@ -195,5 +320,16 @@ public class SellerApp {
             props.setProperty("failure.processing", "0.10");
         }
         return props;
+    }
+    
+    public void shutdown() {
+        running = false;
+        if (idempotencyManager != null) {
+            idempotencyManager.shutdown();
+        }
+        if (inventory != null) {
+            inventory.shutdown();
+        }
+        System.out.println("Seller " + sellerId + " shutting down...");
     }
 }
